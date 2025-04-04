@@ -23,6 +23,16 @@ pipeline {
                 }
             }
         }
+        stage('quality-gate') {
+            steps {
+                script {
+                    def qualityGate = waitForQualityGate()
+                    if (qualityGate.status != 'OK') {
+                        error "Pipeline aborted due to quality gate failure: ${qualityGate.status}"
+                    }
+                }
+            }
+        }
         stage('docker-build-and-push') {
             steps {
                 script {
@@ -35,6 +45,24 @@ pipeline {
                         """
                     }
                 }
+            }
+        }
+        stage('Deploy to Dev') {
+            steps {
+                echo 'Deploying to Dev environment...'
+                // Add your deployment logic here
+            }
+        }
+        stage('Deploy to QA') {
+            steps {
+                echo 'Deploying to QA environment...'
+                // Add your deployment logic here
+            }
+        }
+        stage('Deploy to Prod') {
+            steps {
+                echo 'Deploying to Prod environment...'
+                // Add your deployment logic here
             }
         }
     }
