@@ -19,7 +19,7 @@ pipeline {
         stage('sonar-scan') {
             steps {
                 withSonarQubeEnv('SonarQube') { // Replace 'SonarQube' with your SonarQube server name in Jenkins
-                    sh 'mvn sonar:sonar'
+                    sh 'mvn sonar:sonar -Dsonar.projectKey=java-demoapp-maven'
                 }
             }
         }
