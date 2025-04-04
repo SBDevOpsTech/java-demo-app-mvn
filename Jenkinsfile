@@ -16,6 +16,13 @@ pipeline {
                 junit 'target/surefire-reports/*.xml'
             }
         }
+        stage('sonar-scan') {
+            steps {
+                withSonarQubeEnv('SonarQube') { // Replace 'SonarQube' with your SonarQube server name in Jenkins
+                    sh 'mvn sonar:sonar'
+                }
+            }
+        }
         stage('docker-build-and-push') {
             steps {
                 script {
