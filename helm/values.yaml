@@ -1,0 +1,23 @@
+replicaCount: 2
+
+image:
+  repository: srinisbook/java-demoapp-maven
+  tag: latest
+
+service:
+  type: ClusterIP
+  port: 8080
+
+env: production
+logLevel: info
+
+secrets:
+  dbPassword: "supersecretpassword"
+  apiKey: "secureapikey123"
+
+ingress:
+  class: nginx
+  host: demo.example.com
+
+pdb:
+  minAvailable: 1

@@ -1,0 +1,6 @@
+apiVersion: v2
+name: java-demoapp
+description: A Helm chart for deploying the Java Demo Application
+type: application
+version: 1.0.0
+appVersion: 1.0.0
